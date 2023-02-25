@@ -1,24 +1,6 @@
 # README
+This is the API backend for lov3time mobile app. A dating app that don't try to
+make you lost your time by making more easy to connect with people.
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+You can read the [vision here](VISION.md)
 
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
