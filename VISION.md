@@ -1,4 +1,4 @@
-Hi, this is my first post here. I'm a software developer working as an employee. I have never started anything on my own, but I follow this community because it's super interesting. When it comes to finding an idea for a startup, one recurring tip is to find something that's a problem for you or that annoys you. In my case, I don't date much, so I use dating apps like Tinder and Bumble. However, after using these apps for years, I'm kind of frustrated because I don't have many dates. While this may be due to my profile not being attractive enough or me not being interesting enough, the main issue with these apps is the time they consume. They present potential matches one by one, making it a time-consuming process to find someone. Additionally, the blurry images and GPS requirements are frustrating.
+I put this thoughs in [Indie Hackers](https://www.indiehackers.com/post/a-better-dating-app-experience-18bb83a174)
 
 ## IMPROVEMENTS
 To build a better dating app, here are ten things that could be done:
