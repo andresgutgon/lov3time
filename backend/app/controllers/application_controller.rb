@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 class ApplicationController < ActionController::API
   # Not used because by default `ActionController::API`
   # Does NOT includes CSRF token (aka protect_from_forgery)

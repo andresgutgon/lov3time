@@ -17,10 +17,9 @@ DeviseTokenAuth.setup do |config|
   # Faster tests with a lower token cost generation.
   config.token_cost = Rails.env.test? ? 4 : 10
   config.max_number_of_devices = 3
-  config.omniauth_prefix = "/api/omniauth"
+  config.omniauth_prefix = '/api/omniauth'
   config.check_current_password_before_update = :password
   config.send_confirmation_email = true
-
 
   # Pure OCD. I prefer underscores
   config.headers_names = {

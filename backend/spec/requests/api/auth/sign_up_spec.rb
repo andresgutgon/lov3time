@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe '#sign_up', type: :request do
+describe '#sign_up' do
   let(:is_confirmed) { true }
   let!(:user) { create(:user, :confirmed, is_confirmed:) }
   let(:email) { Faker::Internet.email }
@@ -41,12 +41,13 @@ describe '#sign_up', type: :request do
     )
   end
 
-  context '#PUT /api/auth' do
+  describe '#PUT /api/auth' do
     let(:params) do
-      { email: 'change@email.com'}
+      { email: 'change@email.com' }
     end
-    api_sign_in(:user)
     let(:action) { put '/api/auth', params: }
+
+    api_sign_in(:user)
 
     it 'returns success' do
       action
@@ -68,12 +69,12 @@ describe '#sign_up', type: :request do
     end
   end
 
-  context '#DELETE /api/auth' do
+  describe '#DELETE /api/auth' do
     api_sign_in(:user)
     let(:action) { delete '/api/auth' }
 
     it 'does not delete existing user' do
-      expect { action }.not_to change { User.count }
+      expect { action }.not_to change(User, :count)
     end
   end
 end

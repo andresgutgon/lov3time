@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe '#sign_in', type: :request do
+describe '#sign_in' do
   let(:is_confirmed) { true }
   let(:user) { create(:user, :confirmed, is_confirmed:) }
   let(:params) do
@@ -12,6 +12,7 @@ describe '#sign_in', type: :request do
     }
   end
   let(:action) { post '/api/auth/sign_in', params: }
+
   before { action }
 
   it 'successfully login' do
@@ -34,7 +35,8 @@ describe '#sign_in', type: :request do
       expect(response.body).to include_json(
         success: false,
         errors: [
-          "A confirmation email was sent to your account at '#{user.email}'. You must follow the instructions in the email before your account can be activated"
+          "A confirmation email was sent to your account at '#{user.email}'. " \
+          'You must follow the instructions in the email before your account can be activated'
         ]
       )
     end

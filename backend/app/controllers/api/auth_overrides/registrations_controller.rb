@@ -4,10 +4,6 @@ module Api
   module AuthOverrides
     # This is here only to avoid having `update` and `delete` actions
     class RegistrationsController < DeviseTokenAuth::RegistrationsController
-      def create
-        super
-      end
-
       def update
         # Do nothing
         render_update_success
