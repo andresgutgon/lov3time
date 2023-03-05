@@ -1,0 +1,29 @@
+require:
+  - rubocop-rails
+  - rubocop-rspec
+  - rubocop-performance
+
+# Style
+Style/Documentation:
+  Enabled: false
+
+# Metrics
+Metrics/BlockLength:
+  Enabled: false
+
+# RSpec
+RSpec/MultipleMemoizedHelpers:
+  Enabled: false
+RSpec/ExampleLength:
+  Enabled: false
+RSpec/MultipleExpectations:
+  Enabled: false
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - 'Capfile'
+    - 'config/**/*'
+    - 'bin/**/*'
+    - 'db/**/*'
+    - 'Gemfile'

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe '#validate_token', type: :request do
+describe '#validate_token' do
   let(:action) { get '/api/auth/validate_token' }
 
   it 'responds with unauthorized' do
@@ -12,6 +12,7 @@ describe '#validate_token', type: :request do
 
   describe 'when log in' do
     let(:user) { create(:user) }
+
     api_sign_in(:user)
 
     it 'gets the token' do

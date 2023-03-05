@@ -2,10 +2,11 @@
 
 require 'rails_helper'
 
-describe '#sign_out', type: :request do
+describe '#sign_out' do
   let(:user) { create(:user) }
-  api_sign_in(:user)
   let(:action) { delete '/api/auth/sign_out' }
+
+  api_sign_in(:user)
 
   before { action }
 

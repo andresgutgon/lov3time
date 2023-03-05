@@ -22,4 +22,3 @@ RSpec.shared_examples 'staff_only' do
     end
   end
 end
-

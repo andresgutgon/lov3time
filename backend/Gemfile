@@ -1,18 +1,20 @@
-source "https://rubygems.org"
+# frozen_string_literal: true
+
+source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.1'
 
-gem "rails", "~> 7.0.4", ">= 7.0.4.2"
-gem "pg", "~> 1.1"
-gem "puma", "~> 5.0"
-gem "bootsnap", require: false
-gem "image_processing", "~> 1.2"
-gem "dotenv-rails"
-gem "rack-cors"
+gem 'bootsnap', require: false
 gem 'devise'
 gem 'devise_token_auth'
-gem "tzinfo-data", platforms: %i[
+gem 'dotenv-rails'
+gem 'image_processing', '~> 1.2'
+gem 'pg', '~> 1.1'
+gem 'puma', '~> 5.0'
+gem 'rack-cors'
+gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
+gem 'tzinfo-data', platforms: %i[
   mingw mswin x64_mingw jruby
 ]
 
@@ -24,12 +26,15 @@ gem "tzinfo-data", platforms: %i[
 group :development do
   gem 'letter_opener'
   gem 'letter_opener_web'
+  gem 'rubocop-rails', require: false
+  gem 'rubocop-rspec', require: false
+  gem "rubocop-performance", require: false
 end
 
 group :development, :test do
-  gem 'faker'
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'guard'
   gem 'guard-rspec', require: false
 end
