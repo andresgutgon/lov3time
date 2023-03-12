@@ -14,9 +14,13 @@ gem 'pg', '~> 1.1'
 gem 'puma', '~> 5.0'
 gem 'rack-cors'
 gem 'rails', '~> 7.0.4', '>= 7.0.4.2'
-gem 'tzinfo-data', platforms: %i[
-  mingw mswin x64_mingw jruby
-]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
+
+# Faster JSON marshalling
+gem 'oj'
+
+# https://jsonapi.org/ spec implementation
+gem 'jsonapi.rb'
 
 ## MAYBE INSTALL
 # gem "redis", "~> 4.0"
@@ -43,5 +47,6 @@ group :test do
   gem 'database_cleaner', '~> 1.7.0'
   gem 'rspec-json_expectations'
   gem 'rspec-rails', '~> 6.0.0.rc1'
+  gem 'jsonapi-rspec'
   gem 'timecop', '0.9.5'
 end

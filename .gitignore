@@ -30,3 +30,6 @@
 
 # Ignore master key for decrypting credentials and more.
 /backend/config/master.key
+
+# Mac shit
+.DS_Store
