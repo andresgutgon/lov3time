@@ -13,4 +13,7 @@ class User < ApplicationRecord
     :confirmable,
     :trackable
   )
+
+  # Relations
+  has_one :person, dependent: :destroy
 end
