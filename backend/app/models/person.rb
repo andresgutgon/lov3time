@@ -1,62 +1,14 @@
 # frozen_string_literal: true
 
 class Person < ApplicationRecord
-  # https://epsg.io/4326
-  WGS84_SRID = 4326
-  DEFAULT_DISTANCE_IN_KM = 10_000
+  include People::WithUser
+  include People::WithLocation
+  include People::WithGender
+  include People::WithSexuality
 
-  # Relations
-  belongs_to :user
-
-  # Scopes
-  scope :without_user, lambda { |user|
-    where.not(user:)
-  }
-  scope :confirmed, lambda {
-    includes(:user)
-      .where
-      .not(user: { confirmed_at: nil })
-  }
-  scope :within_person_range, lambda { |person|
-    where(person.radius_query)
-  }
-
-  def radius_query
-    # https://postgis.net/docs/ST_Point.html
-    # For geodetic coordinates, X is longitude and Y is latitude
-    "ST_DWithin(
-      lonlat::geography,
-      'SRID=#{WGS84_SRID};POINT(#{longitude} #{latitude})'::geography,
-      #{radius_in_meters})
-    ".squish
-  end
-
-  # Add a virtual column to people query with the distance in
-  # meters from a point to the list of people in the query
-  #
-  # @return RGeo::ActiveRecord::SpatialNamedFunction
-  def distance_in_meters_field
-    table = Arel::Table.new('people')
-    table[:lonlat].st_distance(
-      lonlat
-    ).as('distance_in_meters')
-  end
-
-  private
-
-  def longitude
-    lonlat&.lon
-  end
-
-  def latitude
-    lonlat&.lat
-  end
-
-  def radius_in_meters
-    radius_in_km * 1000
-  end
-
-  def radius_in_km
-    search_range_in_km || DEFAULT_DISTANCE_IN_KM
+  def ready_to_love?
+    lonlat.present? &&
+      gender.present? &&
+      gender_preference.present?
   end
 end

@@ -12,7 +12,7 @@ describe '#list' do
   let(:frank) do
     create(
       :person,
-      :man,
+      :straight_man,
       :confirmed,
       is_confirmed:,
       lonlat: frank_lonlat,
@@ -38,7 +38,7 @@ describe '#list' do
     let!(:clara) do
       create(
         :person,
-        :woman,
+        :straight_woman,
         :confirmed,
         is_confirmed: clara_confirmed,
         lonlat:,
@@ -122,7 +122,7 @@ describe '#list' do
           let!(:maria) do
             create(
               :person,
-              :woman,
+              :straight_woman,
               :confirmed,
               # Plaza Universitat
               lonlat: 'POINT(2.1649662 41.3864746)',
@@ -132,7 +132,7 @@ describe '#list' do
           let!(:jessica) do
             create(
               :person,
-              :woman,
+              :straight_woman,
               :confirmed,
               # Badalona
               lonlat: 'POINT(2.2482836 41.4433835)',

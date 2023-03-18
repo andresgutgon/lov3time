@@ -1,2 +1,35 @@
 en:
-  hello: "Hello world"
+  all_genders: &default
+    woman: 'Woman'
+    man: 'Man'
+    nonbinary: 'Non-binary'
+    transgender_woman: 'Transgender/Trans woman'
+    transgender_man: 'Transgender/Trans man'
+  assignable_values:
+    person:
+      gender:
+        <<: *default
+      gender_preference:
+        <<: *default
+        everyone: 'Everyone'
+      sexuality:
+        prefer_not_to_say: 'Prefer not to say'
+        straight: 'Straight'
+        gay: 'Gay'
+        lesbian: 'Lesbian'
+        bisexual: 'Bisexual'
+        allosexual: 'Allosexual'
+        androsexual: 'Androsexual'
+        asexual: 'Asexual'
+        autosexual: 'Autosexual'
+        bicurious: 'Bicurious'
+        demisexual: 'Demisexual'
+        fluid: 'Fluid'
+        graysexual: 'Graysexual'
+        polysexual: 'Polysexual'
+        pansexual: 'Pansexual'
+        queer: 'Queer'
+        questioning: 'Questioning'
+        skoliosexual: 'Skoliosexual'
+        not_listed: 'Not listed'
+
