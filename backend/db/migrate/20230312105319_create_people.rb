@@ -3,7 +3,12 @@ class CreatePeople < ActiveRecord::Migration[7.0]
     create_table :people do |t|
       t.string :name, null: false
       t.date :birthday
-      t.references :user, null: false, foreign_key: true
+      t.references(
+        :user,
+        null: false,
+        foreign_key: { on_delete: :cascade },
+        index: { unique: true }
+      )
 
       t.timestamps
     end

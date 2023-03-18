@@ -10,9 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_12_105319) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_16_130038) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+  enable_extension "postgis"
 
   create_table "people", force: :cascade do |t|
     t.string "name", null: false
@@ -20,7 +21,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_105319) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_people_on_user_id"
+    t.geography "lonlat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
+    t.integer "search_range_in_km"
+    t.index ["lonlat"], name: "index_people_on_lonlat", using: :gist
+    t.index ["user_id"], name: "index_people_on_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
@@ -50,5 +54,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_12_105319) do
     t.index ["uid", "provider"], name: "index_users_on_uid_and_provider", unique: true
   end
 
-  add_foreign_key "people", "users"
+  add_foreign_key "people", "users", on_delete: :cascade
 end

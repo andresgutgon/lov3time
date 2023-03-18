@@ -21,6 +21,7 @@ gem 'oj'
 
 # https://jsonapi.org/ spec implementation
 gem 'jsonapi.rb'
+gem 'activerecord-postgis-adapter'
 
 ## MAYBE INSTALL
 # gem "redis", "~> 4.0"
