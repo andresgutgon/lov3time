@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_16_130038) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_18_135347) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -23,6 +23,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_16_130038) do
     t.datetime "updated_at", null: false
     t.geography "lonlat", limit: {:srid=>4326, :type=>"st_point", :geographic=>true}
     t.integer "search_range_in_km"
+    t.string "gender"
+    t.string "sexuality"
+    t.boolean "sexuality_visible", default: true, null: false
+    t.boolean "gender_visible", default: true, null: false
+    t.string "gender_preference", default: [], null: false, array: true
     t.index ["lonlat"], name: "index_people_on_lonlat", using: :gist
     t.index ["user_id"], name: "index_people_on_user_id", unique: true
   end

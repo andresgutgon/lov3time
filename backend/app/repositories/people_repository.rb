@@ -2,7 +2,7 @@
 
 class PeopleRepository < BaseRepository
   def scope
-    return Person.none if current_user.person&.lonlat.nil?
+    return Person.none unless person.ready_to_love?
 
     people.select(
       Arel.star,
@@ -15,8 +15,9 @@ class PeopleRepository < BaseRepository
   def people
     Person
       .without_user(current_user)
-      .confirmed
-      .within_person_range(person)
+      .with_confirmed_users
+      .with_location(person)
+      .with_gender(person)
   end
 
   def person

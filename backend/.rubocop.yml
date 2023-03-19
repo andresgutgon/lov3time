@@ -25,6 +25,8 @@ RSpec/LetSetup:
   Enabled: false
 RSpec/NestedGroups:
   Max: 6
+RSpec/ImplicitSubject:
+  Enabled: false
 
 AllCops:
   NewCops: enable

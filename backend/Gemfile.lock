@@ -71,6 +71,8 @@ GEM
       tzinfo (~> 2.0)
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
+    assignable_values (0.18.0)
+      activerecord (>= 2.3)
     ast (2.4.2)
     bcrypt (3.1.18)
     bootsnap (1.16.0)
@@ -310,6 +312,7 @@ PLATFORMS
 
 DEPENDENCIES
   activerecord-postgis-adapter
+  assignable_values
   bootsnap
   byebug
   database_cleaner (~> 1.7.0)
