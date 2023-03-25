@@ -5,10 +5,11 @@ class Person < ApplicationRecord
   include People::WithLocation
   include People::WithGender
   include People::WithSexuality
+  include People::WithAge
 
   def ready_to_love?
     lonlat.present? &&
-      gender.present? &&
-      gender_preference.present?
+      gender_ready? &&
+      age_ready?
   end
 end

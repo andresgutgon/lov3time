@@ -20,6 +20,16 @@ FactoryBot.define do
       gender_preference { %w[woman] }
     end
 
+    trait :from_plaza_catalunya_in_a_50_km_area do
+      lonlat { 'POINT(2.170041 41.387022)' }
+      search_range_in_km { 50 }
+    end
+
+    trait :from_badalona_in_a_50_km_area do
+      lonlat { 'POINT(2.2482836 41.4433835)' }
+      search_range_in_km { 50 }
+    end
+
     trait :confirmed do
       transient do
         is_confirmed { true }
