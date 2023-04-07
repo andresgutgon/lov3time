@@ -68,6 +68,7 @@ module People
         allow_nil: true,
         unless: proc { |p| p.max_age.blank? }
       )
+      validate :over_legal_age?
 
       def age_ready?
         age.present? &&
@@ -97,6 +98,13 @@ module People
       end
 
       private
+
+      def over_legal_age?
+        return if birthday.nil?
+        return if age >= LEGAL_AGE
+
+        errors.add(:birthday, :under_legal_age)
+      end
 
       # Take into account legal age (18) and add a margin
       # to the beggining and end of the range in case someone is
