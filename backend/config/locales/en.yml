@@ -40,3 +40,4 @@ en:
           attributes:
             birthday:
               under_legal_age: Must be older than 18
+              birthday_freeze: You can't change your birthday

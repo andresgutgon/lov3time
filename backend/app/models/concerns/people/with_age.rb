@@ -6,7 +6,7 @@ module People
 
     LEGAL_AGE = 18
     AGE_RANGE_MARGIN = 6.months
-    CHANGE_BIRTHDAY_SPAM = 1.month
+    CHANGE_BIRTHDAY_SPAM = 2.weeks
 
     class_methods do
       # Convert a number like `45` in a date
@@ -69,6 +69,7 @@ module People
         unless: proc { |p| p.max_age.blank? }
       )
       validate :over_legal_age?
+      validate :can_change_birthday
 
       def age_ready?
         age.present? &&
@@ -104,6 +105,13 @@ module People
         return if age >= LEGAL_AGE
 
         errors.add(:birthday, :under_legal_age)
+      end
+
+      def can_change_birthday
+        return if birthday_setup_at.nil?
+        return if birthday_setup_at + CHANGE_BIRTHDAY_SPAM > Time.zone.now
+
+        errors.add(:birthday, :birthday_freeze)
       end
 
       # Take into account legal age (18) and add a margin
