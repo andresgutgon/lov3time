@@ -28,7 +28,6 @@ describe '#list_by_age' do
   let(:clara_birthday) { Date.new(1978, 10, 10) }
   let(:clara_min_age) { 30 }
   let(:clara_max_age) { 50 }
-  let(:validate) { true }
   let!(:clara) do
     person = build(
       :person,

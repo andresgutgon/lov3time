@@ -8,7 +8,7 @@ RSpec.describe Person, type: :model do
   let(:gender_preference) { %w[woman man nonbinary] }
   let(:current_day) { Time.zone.local(2023, 3, 25) }
   let(:birthday) { Date.new(1980, 11, 4) }
-  let(:birthday_setup_at) { current_day.change(hour: 18, min: 30, sec: 00 )}
+  let(:birthday_setup_at) { current_day.change(hour: 18, min: 30, sec: 0o0) }
   let(:model) do
     build(
       :person,
@@ -87,7 +87,7 @@ RSpec.describe Person, type: :model do
       end
     end
 
-    describe '#birthday inmutable'  do
+    describe '#birthday inmutable' do
       let(:birthday) { Date.new(1980, 11, 5) }
 
       it { is_expected.to be_valid }
@@ -115,13 +115,13 @@ RSpec.describe Person, type: :model do
         end
 
         context 'when is one hour before limit' do
-          let(:today) { time_in_future - 1.hours }
+          let(:today) { time_in_future - 1.hour }
 
           it { is_expected.to be_valid }
         end
 
         context 'when is one hour afte limit' do
-          let(:today) { time_in_future + 1.hours }
+          let(:today) { time_in_future + 1.hour }
 
           it { is_expected.to be_invalid }
         end

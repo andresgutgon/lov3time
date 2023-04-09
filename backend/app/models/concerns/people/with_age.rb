@@ -6,7 +6,7 @@ module People
 
     LEGAL_AGE = 18
     AGE_RANGE_MARGIN_STR = '6 month'
-    AGE_RANGE_MARGIN = eval(AGE_RANGE_MARGIN_STR.gsub(' ', '.'))
+    AGE_RANGE_MARGIN = 6.months
     CHANGE_BIRTHDAY_SPAM = 2.weeks
 
     class_methods do
@@ -17,10 +17,7 @@ module People
       # matches
       def years_in_the_past(column, time_interval: nil)
         sql = %{
-          date_trunc(
-            'year', date '#{Person.today_sql}' + interval '-1 year' *
-            #{column}
-          )
+          date_trunc('year', date '#{Person.today_sql}' + interval '-1 year' * #{column})
         }.squish
         return sql if time_interval.nil?
 
@@ -60,9 +57,7 @@ module People
       # Validations
       validates(
         :min_age,
-        comparison: {
-          less_than_or_equal_to: :max_age
-        },
+        comparison: { less_than_or_equal_to: :max_age },
         allow_nil: true,
         unless: proc { |p| p.max_age.blank? }
       )

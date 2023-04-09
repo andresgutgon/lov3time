@@ -14,6 +14,20 @@ FactoryBot.define do
       gender_preference { %w[man] }
     end
 
+    trait :with_age_range_30_40 do
+      min_age { 30 }
+      max_age { 40 }
+    end
+
+    trait :with_age_range_30_50 do
+      min_age { 30 }
+      max_age { 50 }
+    end
+
+    trait :with_44_years do
+      birthday { Date.new(1978, 10, 10) }
+    end
+
     trait :straight_man do
       name { Faker::Name.male_first_name }
       gender { 'man' }
