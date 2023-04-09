@@ -14,7 +14,10 @@ describe '#list' do
       :person,
       :straight_man,
       :confirmed,
+      :with_44_years,
+      :with_age_range_30_50,
       is_confirmed:,
+      name: 'Frank',
       lonlat: frank_lonlat,
       search_range_in_km:
     )
@@ -39,6 +42,8 @@ describe '#list' do
       create(
         :person,
         :straight_woman,
+        :with_44_years,
+        :with_age_range_30_50,
         :confirmed,
         is_confirmed: clara_confirmed,
         lonlat:,
@@ -124,6 +129,8 @@ describe '#list' do
               :person,
               :straight_woman,
               :confirmed,
+              :with_44_years,
+              :with_age_range_30_50,
               # Plaza Universitat
               lonlat: 'POINT(2.1649662 41.3864746)',
               name: 'Maria'
@@ -133,6 +140,8 @@ describe '#list' do
             create(
               :person,
               :straight_woman,
+              :with_44_years,
+              :with_age_range_30_50,
               :confirmed,
               # Badalona
               lonlat: 'POINT(2.2482836 41.4433835)',

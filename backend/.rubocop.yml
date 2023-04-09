@@ -14,6 +14,9 @@ Metrics/BlockLength:
 Layout/FirstArrayElementIndentation:
   EnforcedStyle: 'consistent'
 
+Naming/VariableNumber:
+  EnforcedStyle: 'snake_case'
+
 # RSpec
 RSpec/MultipleMemoizedHelpers:
   Enabled: false

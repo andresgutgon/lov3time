@@ -5,7 +5,8 @@ class PersonSerializer < BaseSerializer
     :name,
     :birthday,
     :gender_visible,
-    :sexuality_visible
+    :sexuality_visible,
+    :age
   )
 
   attribute :gender, &:humanized_gender

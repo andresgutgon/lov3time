@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_03_18_135347) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_25_122140) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
   enable_extension "postgis"
@@ -28,6 +28,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_03_18_135347) do
     t.boolean "sexuality_visible", default: true, null: false
     t.boolean "gender_visible", default: true, null: false
     t.string "gender_preference", default: [], null: false, array: true
+    t.integer "min_age"
+    t.integer "max_age"
+    t.datetime "birthday_setup_at"
     t.index ["lonlat"], name: "index_people_on_lonlat", using: :gist
     t.index ["user_id"], name: "index_people_on_user_id", unique: true
   end

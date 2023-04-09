@@ -62,6 +62,11 @@ module People
         )
       }
 
+      def gender_ready?
+        gender.present? &&
+          gender_preference.present?
+      end
+
       def gender_preferences
         return Person.all_genders if gender_preference.include?(Person.everyone)
 

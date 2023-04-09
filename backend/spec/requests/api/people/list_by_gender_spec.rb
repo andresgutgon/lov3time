@@ -10,6 +10,8 @@ describe '#list_by_gender' do
     create(
       :person,
       :confirmed,
+      :with_44_years,
+      :with_age_range_30_50,
       # Plaza Catalunya
       lonlat: 'POINT(2.170041 41.387022)',
       gender: frank_gender,
@@ -27,15 +29,21 @@ describe '#list_by_gender' do
     create(
       :person,
       :confirmed,
+      :with_44_years,
+      :with_age_range_30_50,
       # Badalona
       lonlat: 'POINT(2.2482836 41.4433835)',
+      name: 'Clara',
       gender: clara_gender,
       gender_preference: clara_gender_preference
     )
   end
 
   api_sign_in(:user)
-  before { action }
+  before do
+    Timecop.freeze(Time.zone.local(2023, 3, 25))
+    action
+  end
 
   it_behaves_like 'collection_with_one'
 

@@ -18,6 +18,7 @@ class PeopleRepository < BaseRepository
       .with_confirmed_users
       .with_location(person)
       .with_gender(person)
+      .with_age(person)
   end
 
   def person
