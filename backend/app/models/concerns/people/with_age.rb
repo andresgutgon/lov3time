@@ -5,7 +5,8 @@ module People
     extend ActiveSupport::Concern
 
     LEGAL_AGE = 18
-    AGE_RANGE_MARGIN = 6.months
+    AGE_RANGE_MARGIN_STR = '6 month'
+    AGE_RANGE_MARGIN = eval(AGE_RANGE_MARGIN_STR.gsub(' ', '.'))
     CHANGE_BIRTHDAY_SPAM = 2.weeks
 
     class_methods do
@@ -14,19 +15,16 @@ module People
       # `min_age` from today with the birthday day
       # of the person looking at the list of possible
       # matches
-      def years_ago_beggining_of_year(column)
-        %{
+      def years_in_the_past(column, time_interval: nil)
+        sql = %{
           date_trunc(
             'year', date '#{Person.today_sql}' + interval '-1 year' *
             #{column}
           )
         }.squish
-      end
+        return sql if time_interval.nil?
 
-      def years_ago_end_of_year(column)
-        %(
-          #{years_ago_beggining_of_year(column)} + INTERVAL '1 year - 1 day'
-        ).squish
+        "#{sql} + '- #{time_interval}'"
       end
 
       def today_sql
@@ -49,8 +47,8 @@ module People
 
         birthday = person.birthday
         desired_age_range = person.age_range_sql
-        min_age = Person.years_ago_beggining_of_year('min_age')
-        max_age = Person.years_ago_end_of_year('max_age')
+        min_age = Person.years_in_the_past('min_age')
+        max_age = Person.years_in_the_past('max_age', time_interval: AGE_RANGE_MARGIN_STR)
 
         where
           .not(Person.with_invalid_age_sql)

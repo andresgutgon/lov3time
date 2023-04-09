@@ -28,6 +28,7 @@ describe '#list_by_age' do
   let(:clara_birthday) { Date.new(1978, 10, 10) }
   let(:clara_min_age) { 30 }
   let(:clara_max_age) { 50 }
+  let(:validate) { true }
   let!(:clara) do
     person = build(
       :person,
@@ -143,7 +144,15 @@ describe '#list_by_age' do
     it_behaves_like 'empty_collection'
   end
 
-  describe "when Clara is in the upper limit of Frank's age range (+6 months)" do
+  describe "when Frank is in the upper limit of Clara's age range (-6 months older people)" do
+    let(:frank_birthday) { Date.new(1972, 7, 1) }
+
+    it_behaves_like 'collection_with_one'
+  end
+
+  # Total arbitrary span of time. I feel like is a same discard someone that is on
+  # your upper age arange just by a few months
+  describe "when Clara is in the upper limit of Frank's age range (-6 months older people)" do
     let(:clara_birthday) { Date.new(1978, 7, 1) }
 
     it_behaves_like 'collection_with_one'
