@@ -7,16 +7,20 @@ describe '#list_by_age' do
   let(:frank_birthday) { Date.new(1980, 11, 4) }
   let(:frank_min_age) { 30 }
   let(:frank_max_age) { 44 }
+  let(:validate) { true }
   let(:frank) do
-    create(
+    person = build(
       :person,
       :straight_man,
-      :confirmed,
       :from_plaza_catalunya_in_a_50_km_area,
+      name: 'Frank',
       birthday: frank_birthday,
       min_age: frank_min_age,
       max_age: frank_max_age
     )
+    person.save!(validate:)
+    person.user.confirm
+    person
   end
   let(:user) { frank.user }
   let(:action) { get '/api/people', headers: jsonapi_headers }
@@ -25,16 +29,18 @@ describe '#list_by_age' do
   let(:clara_min_age) { 30 }
   let(:clara_max_age) { 50 }
   let!(:clara) do
-    create(
+    person = build(
       :person,
       :straight_woman,
-      :confirmed,
       :from_badalona_in_a_50_km_area,
       name: 'Clara',
       birthday: clara_birthday,
       min_age: clara_min_age,
       max_age: clara_max_age
     )
+    person.save!(validate:)
+    person.user.confirm
+    person
   end
 
   api_sign_in(:user)
@@ -62,6 +68,8 @@ describe '#list_by_age' do
   end
 
   describe 'when Frank is under 18' do
+    # Imagine we don't have validation in place
+    let(:validate) { false }
     let(:frank_birthday) { Date.new(2005, 3, 26) }
 
     it_behaves_like 'empty_collection'
@@ -86,6 +94,8 @@ describe '#list_by_age' do
   end
 
   describe 'when Clara is under 18' do
+    # Simulate we don't have age validation
+    let(:validate) { false }
     let(:frank_min_age) { 18 }
     let(:clara_birthday) { Date.new(2006, 3, 25) + Person::AGE_RANGE_MARGIN }
 
