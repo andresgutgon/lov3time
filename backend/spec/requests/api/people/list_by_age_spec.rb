@@ -115,11 +115,7 @@ describe '#list_by_age' do
   end
 
   describe 'when Frank wants people older than Clara' do
-    # Clara has 44 years. She was born in 1978
-    # And frank wants people older than 45 but because
-    # we pick 45.years.ago.beginning_of_year it will include
-    # Clara. To make the test pass we set 46.
-    let(:frank_min_age) { 46 }
+    let(:frank_min_age) { 45 }
     let(:frank_max_age) { 48 }
 
     it_behaves_like 'empty_collection'

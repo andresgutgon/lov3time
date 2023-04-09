@@ -84,7 +84,7 @@ module People
       end
 
       def max_age_date
-        safe_age(max_age, begging_of_range: true)
+        safe_age(max_age, is_max_age: true)
       end
 
       def min_age_date
@@ -113,20 +113,20 @@ module People
       # has 32 and 6 months.
       #
       # @param age_in_years [Maybe<Integer>]
-      # @param begging_of_range [Boolean]
+      # @param is_max_age [Boolean]
       # @return [Maybe<Integer>]
-      def safe_age(age_in_years, begging_of_range: false)
+      def safe_age(age_in_years, is_max_age: false)
         return nil if age_in_years.nil?
 
         years_ago = age_in_years.years.ago
         under_age = years_ago - AGE_RANGE_MARGIN < LEGAL_AGE
 
-        return legal_age_beggining_of_year if under_age && begging_of_range
+        return legal_age_beggining_of_year if under_age && is_max_age
         return legal_age_end_of_year if under_age
 
-        return years_ago.beginning_of_year - AGE_RANGE_MARGIN if begging_of_range
+        return years_ago.beginning_of_year - AGE_RANGE_MARGIN if is_max_age
 
-        years_ago.end_of_year + AGE_RANGE_MARGIN
+        years_ago.beginning_of_year
       end
 
       def legal_age_beggining_of_year
