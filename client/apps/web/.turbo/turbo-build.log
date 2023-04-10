@@ -1,0 +1,23 @@
+
+> web@1.0.0 build /Users/andres/code/andresgutgon/lov3time/code/client/apps/web
+> next build
+
+info  - Linting and checking validity of types...
+info  - Creating an optimized production build...
+info  - Compiled successfully
+info  - Collecting page data...
+info  - Generating static pages (0/3)
+info  - Generating static pages (3/3)
+info  - Finalizing page optimization...
+
+Route (pages)                              Size     First Load JS
+┌ ○ /                                      302 B          73.6 kB
+└ ○ /404                                   181 B          73.5 kB
++ First Load JS shared by all              73.3 kB
+  ├ chunks/framework-ffffd4e8198d9762.js   45.2 kB
+  ├ chunks/main-e73af678932a69f4.js        27.2 kB
+  ├ chunks/pages/_app-0214b9e53b15d65e.js  195 B
+  └ chunks/webpack-4e7214a60fad8e88.js     712 B
+
+○  (Static)  automatically rendered as static HTML (uses no initial props)
+
