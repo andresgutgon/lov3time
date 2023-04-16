@@ -1,5 +1,5 @@
 import Head from 'next/head'
-import { Button } from 'ui'
+import { Button } from '@lov3/ui'
 
 export default function Home() {
   return (
