@@ -1,5 +1,5 @@
 // styles
-import "./styles.css"
+import './styles.css'
 
 // App Design System
-export * from "./ds/atoms/Button"
+export * from './ds/atoms/Button'
