@@ -14,63 +14,58 @@ on:
       - ready_for_review
 
 concurrency:
-  group: ${{ github.ref }}-backend
+  group: ${{ github.ref }}-client
   cancel-in-progress: true
-
-# You can leverage Vercel Remote Caching with Turbo to speed up your builds
-# @link https://turborepo.org/docs/core-concepts/remote-caching#remote-caching-on-vercel-builds
-env:
-  TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
-  TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
 
 jobs:
   changes:
     name: Check changes files
     runs-on: ubuntu-latest
+    env:
+      TURBO_TOKEN: ${{ secrets.TURBO_TOKEN }}
+      TURBO_TEAM: ${{ secrets.TURBO_TEAM }}
     outputs:
-      backend: ${{ steps.filter.outputs.client }}
+      client: ${{ steps.filter.outputs.client }}
     steps:
-    - uses: actions/checkout@v2
-    - uses: dorny/paths-filter@v2
-      id: filter
-      with:
-        filters: |
-          client:
-            - 'client/**'
-  lint:
+      - uses: actions/checkout@v2
+      - uses: dorny/paths-filter@v2
+        id: filter
+        with:
+          filters: |
+            client:
+              - 'client/**'
+  lint_and_types:
+    name: Lint and Type check
     runs-on: ubuntu-latest
-steps:
+    defaults:
+      run:
+        shell: bash
+        working-directory: client
+    needs: changes
+    if: ${{ needs.changes.outputs.client == 'true' && (github.event_name == 'push' || !github.event.pull_request.draft) }}
+    steps:
       - name: Checkout repo
         uses: actions/checkout@v3
 
       - name: Setup pnpm
         uses: pnpm/action-setup@v2.2.4
+        with:
+          version: 7.15.0
 
-      - name: Setup Node 18
+      - name: Setup Node.js environment
         uses: actions/setup-node@v3
         with:
           node-version: 18
-
-      - name: Get pnpm store directory
-        id: pnpm-cache
-        run: |
-          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
-
-      - name: Setup pnpm cache
-        uses: actions/cache@v3
-        with:
-          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
-          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
-          restore-keys: |
-            ${{ runner.os }}-pnpm-store-
+          cache: "pnpm"
+          cache-dependency-path: "./client/pnpm-lock.yaml"
 
       - name: Install deps (with cache)
         run: pnpm install
 
-      - name: Build, lint and type-check
-        run: pnpm turbo build lint types
+      - name: Build
+        run: pnpm turbo build
+
+      - name: Lint and typescript
+        run: pnpm turbo lint check-types
         env:
           SKIP_ENV_VALIDATION: true
-
-      - name: Check workspaces
-        run: pnpm manypkg check

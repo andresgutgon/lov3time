@@ -12,31 +12,32 @@ const config = {
   trailingComma: 'all',
   tabWidth: 2,
   // pluginSearchDirs: false,
-  plugins: [
-    '@ianvs/prettier-plugin-sort-imports',
-    'prettier-plugin-tailwindcss',
-  ],
-  tailwindConfig: './packages/tailwind-config/tailwind.config',
-  importOrder: [
-    '^(react/(.*)$)|^(react$)|^(react-native(.*)$)',
-    '^(next/(.*)$)|^(next$)',
-    '^(expo(.*)$)|^(expo$)',
-    '<THIRD_PARTY_MODULES>',
-    '',
-    '^ui/(.*)$',
-    '',
-    '^~/utils/(.*)$',
-    '^~/components/(.*)$',
-    '^~/styles/(.*)$',
-    '^~/(.*)$',
-    '^[./]',
-  ],
-  importOrderSeparation: false,
-  importOrderSortSpecifiers: true,
-  importOrderBuiltinModulesToTop: true,
-  importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'],
-  importOrderMergeDuplicateImports: true,
-  importOrderCombineTypeAndValueImports: true,
+  // FIXME: Plugins DON'T work
+  /* plugins: [ */
+  /*   '@ianvs/prettier-plugin-sort-imports', */
+  /*   'prettier-plugin-tailwindcss', */
+  /* ], */
+  /* tailwindConfig: './packages/tailwind-config/tailwind.config', */
+  /* importOrder: [ */
+  /*   '^(react/(.*)$)|^(react$)|^(react-native(.*)$)', */
+  /*   '^(next/(.*)$)|^(next$)', */
+  /*   '^(expo(.*)$)|^(expo$)', */
+  /*   '<THIRD_PARTY_MODULES>', */
+  /*   '', */
+  /*   '^ui/(.*)$', */
+  /*   '', */
+  /*   '^~/utils/(.*)$', */
+  /*   '^~/components/(.*)$', */
+  /*   '^~/styles/(.*)$', */
+  /*   '^~/(.*)$', */
+  /*   '^[./]', */
+  /* ], */
+  /* importOrderSeparation: false, */
+  /* importOrderSortSpecifiers: true, */
+  /* importOrderBuiltinModulesToTop: true, */
+  /* importOrderParserPlugins: ['typescript', 'jsx', 'decorators-legacy'], */
+  /* importOrderMergeDuplicateImports: true, */
+  /* importOrderCombineTypeAndValueImports: true, */
 }
 
 module.exports = config
