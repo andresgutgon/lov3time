@@ -59,11 +59,26 @@ jobs:
           cache: "pnpm"
           cache-dependency-path: "./client/pnpm-lock.yaml"
 
+      - name: Get pnpm store directory
+        id: pnpm-cache
+        run: |
+          echo "pnpm_cache_dir=$(pnpm store path)" >> $GITHUB_OUTPUT
+
+      - name: Setup pnpm cache
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.pnpm-cache.outputs.pnpm_cache_dir }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: |
+            ${{ runner.os }}-pnpm-store-
+
       - name: Install deps (with cache)
         run: pnpm install
 
       - name: Build
         run: pnpm turbo build
+        env:
+          NEXT_TELEMETRY_DISABLED: 1
 
       - name: Lint and typescript
         run: pnpm turbo lint check-types
