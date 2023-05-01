@@ -4,6 +4,12 @@
     "name": "Lov3.it",
     "slug": "lov3it",
     "description": "A simpler way of dating, less noise and no blurry profiles. Less chatting online and more going for a walk with a real person. And way less expensive that other apps!",
-    "platforms": ["ios", "android"]
+    "platforms": [
+      "ios",
+      "android"
+    ],
+    "ios": {
+      "bundleIdentifier": "com.lov3it"
+    }
   }
 }
