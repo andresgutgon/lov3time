@@ -1,10 +1,28 @@
-import '../styles/globals.css'
+import 'raf/polyfill'
+import 'setimmediate'
 
-// include styles from the ui package
-import '@lov3/ui/styles.css'
+import '../global.css'
 
-import type { AppProps } from 'next/app'
+import Head from 'next/head'
+import type { SolitoAppProps } from 'solito'
+import Provider from '@ui/Provider'
 
-export default function MyApp({ Component, pageProps }: AppProps) {
-  return <Component {...pageProps} />
+function MyApp({ Component, pageProps }: SolitoAppProps) {
+  return (
+    <>
+      <Head>
+        <title>Solito Example App</title>
+        <meta
+          name='description'
+          content='Expo + Next.js with Solito. By Fernando Rojo.'
+        />
+        <link rel='icon' href='/favicon.ico' />
+      </Head>
+      <Provider>
+        <Component {...pageProps} />
+      </Provider>
+    </>
+  )
 }
+
+export default MyApp
