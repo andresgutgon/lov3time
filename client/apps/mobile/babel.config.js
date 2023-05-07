@@ -7,6 +7,15 @@ module.exports = function(api) {
       'react-native-reanimated/plugin',
       'nativewind/babel',
       'expo-router/babel',
+      [
+        require.resolve('babel-plugin-module-resolver'),
+        {
+          root: '.',
+          alias: {
+            app: './app',
+          },
+        },
+      ],
     ],
   }
 }

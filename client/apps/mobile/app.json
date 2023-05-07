@@ -10,6 +10,10 @@
     "ios": {
       "bundleIdentifier": "com.lov3it"
     },
+    "splash": {
+      "image": "./assets/splash.png",
+      "resizeMode": "cover"
+    },
     "extra": {
       "eas": {
         "projectId": "b5fdea36-0fae-4057-b458-2297d34f13f0"
