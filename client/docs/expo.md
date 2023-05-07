@@ -21,6 +21,16 @@ Then run
 pnpm expo run:ios
 ```
 
+## EAS
+
+EAS Build is a hosted service for building app binaries for your Expo and React Native projects.
+More [info here](https://docs.expo.dev/build/introduction/)
+Install the CLI:
+
+```
+ pnpm i -g eas-cli
+```
+
 This will create an `ios` folder in `client/apps/mobile/ios`
 This is the build of the app with `v3` of `react-native-reanimated`. Once next Expo
 SDK comes with `v3` included all we have to is remove `ios` folder.

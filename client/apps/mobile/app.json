@@ -5,11 +5,15 @@
     "slug": "lov3it",
     "description": "A simpler way of dating, less noise and no blurry profiles. Less chatting online and more going for a walk with a real person. And way less expensive that other apps!",
     "platforms": [
-      "ios",
-      "android"
+      "ios"
     ],
     "ios": {
       "bundleIdentifier": "com.lov3it"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "b5fdea36-0fae-4057-b458-2297d34f13f0"
+      }
     }
   }
 }
