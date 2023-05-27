@@ -1,3 +1,12 @@
+// This pollyfills are necessary to work in NextJS with `reanimated` (Animations for React Native)
+// https://docs.swmansion.com/react-native-reanimated/docs/fundamentals/web-support/#nextjs-polyfill
+//
+/* import 'raf/polyfill' */
+/* import 'setimmediate' */
+
+// The problem is that this does not work with NextJS 13 and the `app` folder
+// [Add pollyfills in NextJS 13](https://github.com/vercel/next.js/discussions/20992)
+// [Solito issue](https://github.com/nandorojo/solito/issues/383)
 import { MotiLink } from 'solito/moti'
 
 import { A, H1, P, Text, TextLink } from '@ui/ds/atoms/Text'
@@ -9,11 +18,11 @@ export default function HomeScreen() {
     <View className='flex-1 items-center justify-center p-3'>
       <H1>Welcome to Solito.</H1>
       <View className='max-w-xl'>
-        <P className='text-center'>
+        <Text fontWeight='black' className='text-center'>
           Here is a basic starter to show you how you can navigate from one
           screen to another. This screen uses the same code on Next.js and React
           Native.
-        </P>
+        </Text>
         <P className='text-center'>
           Solito is made by{' '}
           <A

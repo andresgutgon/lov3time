@@ -1,13 +1,42 @@
 import 'raf/polyfill'
 import 'setimmediate'
 
+import cn from 'classnames'
+import localFont from 'next/font/local'
+
+const inter = localFont({
+  variable: '--font-inter',
+  src: [
+    {
+      path: '../../public/font/Inter/Inter-Regular.otf',
+      weight: '400',
+      style: 'normal',
+    },
+    {
+      path: '../../public/font/Inter/Inter-Medium.otf',
+      weight: '500',
+      style: 'normal',
+    },
+    {
+      path: '../../public/font/Inter/Inter-Bold.otf',
+      weight: '700',
+      style: 'normal',
+    },
+    {
+      path: '../../public/font/Inter/Inter-Black.otf',
+      weight: '900',
+      style: 'normal',
+    },
+  ],
+})
+
 import '../global.css'
 
 import Head from 'next/head'
 import type { SolitoAppProps } from 'solito'
 import Provider from '@ui/Provider'
 
-function MyApp({ Component, pageProps }: SolitoAppProps) {
+export default function App({ Component, pageProps }: SolitoAppProps) {
   return (
     <>
       <Head>
@@ -19,10 +48,12 @@ function MyApp({ Component, pageProps }: SolitoAppProps) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Provider>
-        <Component {...pageProps} />
+
+        <main className={cn(inter.variable)}>
+          <Component {...pageProps} />
+        </main>
       </Provider>
     </>
   )
 }
 
-export default MyApp
